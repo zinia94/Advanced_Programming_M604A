@@ -1,10 +1,6 @@
 import pandas as pd
 
-
-def get_data():
-    # data reading
-    df = pd.read_csv("src/data/German_FinTechCompanies.csv")
-
+def prepare_data(df):
     # data preparation
     df["Founding year"] = pd.to_datetime(df["Founding year"], format="%Y")
     df["Year"] = df["Founding year"].dt.year

@@ -61,6 +61,9 @@ def get_chart_for_fintech_type_status_chart(df):
 
 
 def get_charts(df):
+    if len(df) == 0:
+        return []
+    
     status_bar_chart = get_chart(
         get_data(df, ["Status"]),
         "Status: FinTech is active up until 31 December 2021",

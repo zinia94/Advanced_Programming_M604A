@@ -3,7 +3,8 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, DateField, ValidationError
 from wtforms.validators import DataRequired
 from src.charts import get_charts
-from src.data import get_data, get_filtered_data, get_records_replace_nan
+from src.data import prepare_data, get_filtered_data, get_records_replace_nan
+import pandas as pd
 
 columns = [
     "ID",
@@ -49,13 +50,21 @@ class Routes:
     def __init__(self, app, session) -> None:
         self.app = app
         self.session = session
-        self.df = get_data()
+        self.df = []
+        
 
     def initRoutes(self):
+        try:
+            dataFrames = pd.read_csv("src/data/German_FinTechCompanies.csv")
+            self.df = prepare_data(dataFrames)
+        except Exception:
+            return redirect(url_for("error"))
+        
+        
+        # Home Page
         @self.app.route("/")
         def index():
             self.session.clear()  # clear session while starting the app
-            # readData()
             return render_template("home.html")
 
         @self.app.route("/data", methods=["GET"])
@@ -78,34 +87,24 @@ class Routes:
 
         @self.app.route("/dashboard", methods=["POST", "GET"])
         def chart():
-            form = FilterForm()
-            filter_applied = False
-            if request.method == "POST":
-                if form.validate_on_submit():
-                    filter_applied = True
-                else:
-                    flash("Invalid Dates! From date should be less than to date. ")
             try:
-                if filter_applied:
-                    filterd_Df = get_filtered_data(
-                        self.df, form.fromdate.data, form.todate.data
-                    )
-                    if len(filterd_Df) == 0:
-                        flash(
-                            "Currently, we have data up to January 1, 2021. Please try an earlier date."
+                form = FilterForm()
+                dashboard_df = self.df
+                if request.method == "POST":
+                    if form.validate_on_submit():
+                        dashboard_df = get_filtered_data(
+                            self.df, form.fromdate.data, form.todate.data
                         )
-                        return render_template(
-                            "chart.html", chart_properties=[], form=form
-                        )
+                        if len(dashboard_df) == 0:
+                            flash(
+                                "Currently, we have data up to January 1, 2021. Please try an earlier date."
+                            )
                     else:
-                        return render_template(
-                            "chart.html",
-                            chart_properties=get_charts(filterd_Df),
-                            form=form,
+                        dashboard_df = []
+                        flash("Invalid Dates! From date should be less than to date. ")
+                
+                return render_template(
+                            "chart.html", chart_properties=get_charts(dashboard_df), form=form
                         )
-                else:
-                    return render_template(
-                        "chart.html", chart_properties=get_charts(self.df), form=form
-                    )
             except Exception as e:
                 return redirect(url_for("error"))
