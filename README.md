@@ -38,7 +38,10 @@ This is an interactive visualizer for the fintech data, which can be filtered by
 ## How to Install Dependencies and Run the Project
 
    **Step 1:** Install python3. (Minimum version 3.11.x, if the version is < 3.11.x , please upgrade)  
-   **Step 2:** Run the following command from your terminal where the project is located: `pip3 install virtualenv`. If you get an error try running this command with the --break-system-packages flag instead:  `pip3 install virtualenv --break-system-packages`.  
+   **Step 2:** Run the following command from your terminal where the project is located: `pip3 install virtualenv`.    
+   
+  ( _If you get an error try running this command with the --break-system-packages flag instead:  `pip3 install virtualenv --break-system-packages`._  )
+
    **Step 3:** Run the following command: `virtualenv env`.       
    **Step 4:** For Mac or Linux, run the following command: `source env/bin/activate`. For Windows, run this instead: `env\scripts\activate.bat`.  
    **Step 6:** Run the following command: `pip3 install -r requirements.txt`.   
