@@ -1,0 +1,81 @@
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: rgb(255, 255, 255);
+}
+
+body{ min-height: 100vh; margin:0; }
+header{ min-height:50px; }
+footer{ min-height:20px; }
+
+body{ display:flex; flex-direction:column; }
+article{ flex:1; }
+
+.footer-basic {
+    padding:10px 0;
+    background-color:#555151;
+    color:#4b4c4d;
+}
+  
+.footer-basic .details {
+  text-align:center;
+  font-size:13px;
+  color:#aaa;
+}
+
+.tablestyle {
+    overflow: auto; 
+    height: 600px;
+    border-radius: 10px;
+}
+
+div.tablestyle::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+div.tablestyle::-webkit-scrollbar-track {
+    background: #d1cfcf; 
+}
+    
+   /* Handle */
+div.tablestyle::-webkit-scrollbar-thumb {
+    background: #bee5eb; 
+    border-radius: 10px;
+}
+   
+   /* Handle on hover */
+div.tablestyle::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+table {
+    width: 100%;;
+    /**overflow: scroll !important;**/
+    ::-webkit-scrollbar-track {
+        background: #9c2d2d; 
+    }
+
+}
+   
+
+th {
+    height: 30px;
+    position: sticky;
+    top:0;
+}
+
+td {
+    text-align: left;
+    padding: 5px;
+}
+
+.logoh1 img {
+    float: left;
+}
+
+.chartBox {
+    width: 50%;
+    height: 500px;
+}
+
+

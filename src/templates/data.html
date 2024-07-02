@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block head %}
+<title>FinTech | All Data</title>
+{% endblock %}
+{% block body %}
+<div style="margin: 2%; margin-top:3%">
+  <div class="logoh1">
+  <img src = "static/img/logo.jpg" alt="logo" style="width:4%">
+  <h2 style="padding-left: 5%; color: #679FCD">FinTech data</h2> 
+  </div>
+  <br>
+  {% if tableData|length < 1 %}
+  <div style="text-align: center;">
+  <p>There is no data right now!</p>
+  </div>
+  {% else %}
+  <div style="width: 100%; overflow: hidden;">
+  <p style="float: left; font-style: italic; color: #7D8182;">Showing total <b>{{total_records}}</b> records up to January 1, 2021</p>
+  </div>
+  <div class="tablestyle"style="">
+  <table id="data" class="table table-bordered table-hover">
+     <thead>
+        <tr>
+          {% for column in columns %}
+          {% if column == 'ID' %}
+          <th class="table-info">#</th>
+          {%else%}
+          <th class="table-primary">{{column}}</th>
+          {% endif %}
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in tableData %}
+          <tr style="color: #504D52; text-align: left;">
+              {% for i in range(0, number_of_columns) %}
+
+              <td>{{record[i]}}</td>
+
+              {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  </div>
+  <br>
+  {% endif %}
+  
+  <div style="text-align: right;">
+    <a href="/">
+      <button class="btn btn-default btn-sm">Back</button>
+    </a>
+  </div>
+</div>
+{% endblock %}

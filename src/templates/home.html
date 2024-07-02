@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>GovDat</title>
+{% endblock %}
+
+{% block body %}
+<div style="padding: 4%; height: 100%; ">
+    <div style="padding-bottom: 10px">
+        <div>
+            <img src = "static/img/logo.jpg" alt="logo" style="width:10%; float: left">
+            <div><h1 style="float:left; color: #0e68b4">Gov</h1><h1 style="color: #8bc540">Dat</h1></div>
+        </div>
+        <p style="font-style:italic; color: #5b5b5b">
+            We are dedicated to leveraging technology to solve societal challenges.<br> Our mission is to enhance public access to government data,<br>thereby fostering transparency and enabling informed decision-making.
+        </p>
+    </div>
+    <hr>
+    <br>
+
+    <h3 style="color: #999999">Highlights of the recent projects</h3>
+    <hr>
+    <h4 style="color: #0e68b4">FinTech Data Analysis: Insights for CivTech Innovation and Public Sector Transformation</h4>
+    <br>
+    <p style="text-align: justify;">
+        CivTech programmes are the efforts to use technological solutions for public sector challenges in order to promote efficiency, reduce risk and raise standard of delivery on behalf of citizen. German fintech market offers innovative techniques and technologies that can translate to Civtech uses. By analyzing data around German fintech companies we can identify trends and technologies which are potential for transforming public sectors in particular financial management, crowdfunding of community projects and enhancing the transparency of public finance.
+    <br>
+    <br>
+    This tool leverages FinTech company data to enhance transparency, support regulatory compliance, and facilitate public engagement by providing detailed, accessible profiles of financial entities. It enables citizens, regulators, and policymakers to monitor the status, legal information, and operational history of FinTech companies, fostering trust and informed decision-making in the financial sector.
+    
+    </p>
+
+    <div style="width: 100%; display: table; padding-top: 2%; text-align: center;">
+        <a href="data">
+            <button class="btn btn-primary" >Show all data</button>
+        </a>
+        <a href="dashboard" style="padding-left: 5px">
+            <button class="btn btn-primary" >See dashboard</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

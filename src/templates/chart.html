@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block body %}
+<div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'message' %}
+               <a href="/dashboard" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <div class="alert alert-warning" role="alert">
+            {% else %}
+            <a href="/dashboard" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <div class="alert alert-{{ category }}" role="alert">
+            {% endif %}
+            <a href="/dashboard" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              {{ message }}
+            </div>
+        {% endfor %}
+      {% endif %}
+  {% endwith %}
+</div>
+
+<div style= "color:#808080; padding: 2%">
+  <div style=" width:50%; float: left">
+    <img style="float: left; height: 35px; padding-right: 10px" src = "static/img/logo.jpg" alt="logo" style="width:4%">
+    <h2 style="color: #679FCD">FinTech Dashboard</h2>
+  </div>
+  <div style="float:right">
+    <form style="float:left;" id="filterForm" name ="filterForm" method="POST" >
+      {{ form.csrf_token }}
+      <div class="form-group" style="float:left; padding: 5px;">
+        {{ form.fromdate.label }}:
+        {{ form.fromdate() }}
+      </div>
+      <div class="form-group" style="float:left; padding: 5px;">
+        {{ form.todate.label }}
+        {{ form.todate()}}
+      </div>
+      
+      <div style="float:right; margin: 5px">
+        {{form.submit(class_="btn btn-primary btn-sm")}}
+      </div>
+    </form>
+    <div style="float:left; padding:5px; height: 10px">
+      <a href="/dashboard">
+      <button class="btn btn-default btn-sm">Clear Filter</button>
+      </a>
+    </div>
+    <div style="float:right; padding:5px; height: 10px">
+      <a href="/">
+      <button class="btn btn-default btn-sm">Back</button>
+      </a>
+    </div>
+  </div>
+</div>
+<hr>
+<div style="padding-left: 10px; padding-right: 10px;">
+  <table>
+    <tr>
+      <td>
+        <canvas id="myChart7" style="width: 30%"></canvas>
+      </td>
+      <td >
+        <canvas id="myChart2" style="width: 8%"></canvas>
+      </td>
+      <td>
+        <canvas id="myChart3" style="width: 10%"></canvas>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+        <canvas id="myChart6" style="width: 25%"></canvas>
+      </td>
+      <td>
+        <canvas id="myChart1" style="width: 15%" ></canvas>
+      </td>
+      <td>
+        <canvas id="myChart8" style="width: 60%"></canvas>
+      </td>
+    </tr>
+  </table>
+<table>
+  <tr>
+    <td>
+      <canvas id="myChart4" style="width: 3%"></canvas>
+    </td>
+    <td>
+      <canvas id="myChart5" style="width: 50%"></canvas>
+    </td>
+  </tr>
+</table>
+</div>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+<script>
+    
+    const properties = JSON.parse('{{ chart_properties | tojson | safe }}');
+    
+    const chartElement = 'myChart'
+    for(let i=1; i<=properties.length;i++){
+      new Chart(document.getElementById(chartElement+i), properties[i-1]);
+    }
+
+</script>
+{% endblock %}
