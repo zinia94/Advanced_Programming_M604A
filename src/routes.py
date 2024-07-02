@@ -51,7 +51,6 @@ class Routes:
         self.app = app
         self.session = session
         self.df = []
-        
 
     def initRoutes(self):
         try:
@@ -59,8 +58,7 @@ class Routes:
             self.df = prepare_data(dataFrames)
         except Exception:
             return redirect(url_for("error"))
-        
-        
+
         # Home Page
         @self.app.route("/")
         def index():
@@ -102,9 +100,9 @@ class Routes:
                     else:
                         dashboard_df = []
                         flash("Invalid Dates! From date should be less than to date. ")
-                
+
                 return render_template(
-                            "chart.html", chart_properties=get_charts(dashboard_df), form=form
-                        )
+                    "chart.html", chart_properties=get_charts(dashboard_df), form=form
+                )
             except Exception as e:
                 return redirect(url_for("error"))

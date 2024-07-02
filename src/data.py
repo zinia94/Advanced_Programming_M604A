@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def prepare_data(df):
     # data preparation
     df["Founding year"] = pd.to_datetime(df["Founding year"], format="%Y")
