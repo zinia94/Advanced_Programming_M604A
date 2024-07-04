@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired
 from src.charts import get_charts
 from src.data import prepare_data, get_filtered_data, get_records_replace_nan
 import pandas as pd
+import logging
 
 columns = [
     "ID",
@@ -56,7 +57,8 @@ class Routes:
         try:
             dataFrames = pd.read_csv("src/data/German_FinTechCompanies.csv")
             self.df = prepare_data(dataFrames)
-        except Exception:
+        except Exception as ex:
+            logging.error("Error occurred", exc_info = ex)
             return redirect(url_for("error"))
 
         # Home Page
@@ -76,7 +78,8 @@ class Routes:
                     number_of_columns=len(columns),
                     total_records=len(records),
                 )
-            except Exception as e:
+            except Exception as ex:
+                logging.error("Error occurred", exc_info = ex)
                 return redirect(url_for("error"))
 
         @self.app.route("/error", methods=["GET"])
@@ -104,5 +107,6 @@ class Routes:
                 return render_template(
                     "chart.html", chart_properties=get_charts(dashboard_df), form=form
                 )
-            except Exception as e:
+            except Exception as ex:
+                logging.error("Error occurred", exc_info = ex)
                 return redirect(url_for("error"))

@@ -66,7 +66,7 @@ def get_charts(df):
 
     status_bar_chart = get_chart(
         get_data(df, ["Status"]),
-        "Status: FinTech is active up until 31 December 2021",
+        "Status: FinTech is active vs inactive",
         indexAxis="y",
     )
     fintech_type_pie_chart = get_chart(
@@ -81,11 +81,11 @@ def get_charts(df):
         get_data(df, ["Year"], sort=False), "FinTech Companies Count by Founding Year"
     )
     all_fintech_type_chart = get_chart(
-        get_data(df, ["Subsegment"]), "Frequecy of FinTech by segment type", "line"
+        get_data(df, ["Subsegment"]), "Frequecy of FinTech by all types", "line"
     )
     fintech_type_status_chart = get_chart(
         get_chart_for_fintech_type_status_chart(df),
-        "Frequecy of FinTech subsegments: Active vs inactive till 2021",
+        "Frequency of FinTech subsegments: Active vs Inactive",
         indexAxis="y",
     )
     country_chart = get_chart(
