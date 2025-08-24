@@ -4,8 +4,6 @@ CivTech programmes are the efforts to use technological solutions for public sec
 
 This tool leverages FinTech company data to enhance transparency, support regulatory compliance, and facilitate public engagement by providing detailed, accessible profiles of financial entities. It enables citizens, regulators, and policymakers to monitor the status, legal information, and operational history of FinTech companies, fostering trust and informed decision-making in the financial sector.
 
-**This project was developed as an assignment for the Advanced Computer Programming (M605A) course.**
-
 The fintech data was downloaded from here: [Kaggle Link](https://www.kaggle.com/datasets/desalegngeb/german-fintech-companies)
 
 We uploaded the data in this location: src/data/German_FinTechCompanies.csv
